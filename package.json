@@ -11,7 +11,8 @@
   "scripts": {
     "test": "node --test \"test/*.test.mjs\"",
     "check": "node scripts/check-syntax.mjs",
-    "verify": "npm run check && npm test",
+    "validate": "node scripts/validate-gaps.mjs",
+    "verify": "npm run check && npm run validate && npm test",
     "ask": "node scripts/ask.mjs"
   },
   "keywords": [

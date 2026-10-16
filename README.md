@@ -27,7 +27,7 @@ on, and at least three — in fact **eight** — concrete documentation gaps wit
 | [`docs/verified-onboarding.json`](docs/verified-onboarding.json) | Machine-readable per-step onboarding verification |
 | [`queries/`](queries/) | The question set and the documented network parameters (with provenance) |
 | [`src/`](src/) | Docs MCP client, SSE decoder, redaction helpers |
-| [`scripts/`](scripts/) | Runnable entry points (login, ask, batch run, verifiers) |
+| [`scripts/`](scripts/) | Runnable entry points (login, ask, batch run, verifiers, gap-evidence validator) |
 | [`test/`](test/) | 26 unit tests, no test-framework dependencies |
 
 ---
@@ -76,6 +76,7 @@ scripts/ask.mjs             ask one question, write a sanitized transcript
 scripts/run-queries.mjs     run the whole question set, write transcripts + a summary
 scripts/verify-onboarding.mjs   PASS/PARTIAL/FAIL/BLOCKED per onboarding step
 scripts/verify-network.mjs      live check of every documented network against its RPC
+scripts/validate-gaps.mjs       proves each claimed gap is backed by its transcript
 scripts/check-syntax.mjs    zero-dependency syntax check for every module
 ```
 
@@ -92,7 +93,7 @@ Requirements: Node.js ≥ 20, npm, git. No API keys.
 npm install
 
 # 1. Static checks + unit tests (no network)
-npm run verify            # syntax check (12/12) + tests (26/26)
+npm run verify            # syntax check (13/13) + evidence validation (13/13) + tests (26/26)
 
 # 2. Verify the documented network parameters live (read-only JSON-RPC)
 node scripts/verify-network.mjs

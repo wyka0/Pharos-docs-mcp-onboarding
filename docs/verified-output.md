@@ -8,25 +8,21 @@ here is illustrative — where something failed or was blocked, that is what is 
 
 ## 1. Repository checks
 
-### `npm run check` — syntax check of every module
+### `npm run verify` — syntax check, evidence validation, unit tests
 
 ```text
-$ npm run check
-ok   scripts\ask.mjs
-ok   scripts\check-syntax.mjs
-ok   scripts\login.mjs
-ok   scripts\run-queries.mjs
-ok   scripts\verify-network.mjs
-ok   scripts\verify-onboarding.mjs
-ok   src\client.mjs
-ok   src\redact.mjs
-ok   src\sse.mjs
-ok   test\client.test.mjs
-ok   test\redact.test.mjs
-ok   test\sse.test.mjs
-
-12/12 files passed syntax check.
+$ npm run verify
+13/13 files passed syntax check.
+13 evidence claims checked; 0 problem(s).
+ℹ tests 26
+ℹ pass 26
+ℹ fail 0
 ```
+
+`validate-gaps.mjs` is the honesty check on the gap report: it re-reads every transcript and fails
+if a quoted piece of evidence is missing or edited. It caught one unbacked expectation while this
+repository was being assembled (a phrase attributed to transcript `06` that the transcript does not
+contain), which is why it exists.
 
 ### `npm test` — unit tests (Node's built-in test runner, no test dependencies)
 
