@@ -1,0 +1,54 @@
+{
+  "description": "Query set asked to the Pharos Developer Docs MCP (ai.pharos.xyz agentType=PHAROS_DOCS) during the onboarding walkthrough. Each entry is executed verbatim by scripts/run-queries.mjs and stored under docs/transcripts/.",
+  "agent": "PHAROS_DOCS",
+  "queries": [
+    {
+      "id": "01-onboarding-path",
+      "question": "I am a developer new to Pharos. What is the exact documented onboarding path from zero to a first working build on Pharos? Give the steps in order with the exact URLs, tool names, commands and prerequisites, and name the documentation page each step comes from."
+    },
+    {
+      "id": "02-network-parameters",
+      "question": "Give the exact network parameters the documentation defines for Pharos: for every network (testnet and mainnet) list the network name, RPC URL, chain ID, block explorer URL, native gas token symbol and faucet URL. Quote the documented values exactly, and say explicitly if any value is not documented."
+    },
+    {
+      "id": "03-self-contained-example",
+      "question": "Show the smallest self-contained runnable example that the documentation supports for the Pharos Atlantic Testnet: the exact commands to create the project from scratch, the exact config file contents, and the exact source code, without cloning an external repository. If the docs only provide an external example repository, say so explicitly and give the exact repository URL and directory path."
+    },
+    {
+      "id": "04-testnet-faucet",
+      "question": "How exactly does a developer obtain Atlantic Testnet PHRS? Give the exact faucet URL, the steps, and any prerequisites or limits the documentation states. If no public faucet is documented, say so explicitly instead of guessing."
+    },
+    {
+      "id": "05-deploy-and-verify",
+      "question": "What are the exact documented steps to deploy a smart contract to Pharos, and afterwards to verify that the deployment succeeded? Include the exact commands, the explorer URL pattern for checking an address or transaction, and the exact verification command if the docs document contract verification."
+    },
+    {
+      "id": "06-common-errors",
+      "question": "What errors do developers commonly hit when deploying to Pharos and what exactly do the official docs say to fix each one? Include exact error messages and the documented remedies, or say explicitly if the docs do not document an error case."
+    },
+    {
+      "id": "07-docs-mcp-access",
+      "question": "What is the Pharos Developer Docs MCP? Describe it precisely using only official documentation: what it is, how a developer accesses it programmatically (exact endpoint URL, transport, authentication requirements), how it authenticates, and what its tools and parameters are. If the official docs do not document programmatic access, answer exactly: 'not documented'."
+    },
+    {
+      "id": "08-mcp-tools",
+      "question": "Does Pharos document an MCP server for developers? If yes give the exact endpoint URL, the transport type, the authentication requirements, and the complete list of tool names with their input parameters. If the documentation does not list the available tools, say so explicitly."
+    },
+    {
+      "id": "09-chain-mcp-vs-docs-mcp",
+      "question": "What is the difference between the Pharos Chain MCP and the Pharos Docs MCP according to the documentation? Give the exact endpoints documented for each. If only one of them is documented, say which one is missing from the docs."
+    },
+    {
+      "id": "10-toolchain-versions",
+      "question": "Which exact toolchain versions does the Pharos documentation require or recommend for building (Node.js version, Hardhat version, Foundry version, ethers.js version, viem version)? Quote the documented version numbers, and say explicitly if a version is not pinned anywhere in the docs."
+    },
+    {
+      "id": "11-verification-checklist",
+      "question": "After completing the documented onboarding, what exact checks do the official docs tell a developer to run to confirm the setup works end to end? List every documented verification command or check. If the docs contain no end-to-end verification checklist, say so explicitly and list the closest documented checks instead."
+    },
+    {
+      "id": "12-hardhat-config",
+      "question": "Show the exact hardhat.config.js file content that the Pharos documentation provides for deploying to the Atlantic Testnet, including the network entry, the ethers plugin version and the solidity version. If the documented file does not include the Atlantic Testnet network entry, point that out explicitly."
+    }
+  ]
+}

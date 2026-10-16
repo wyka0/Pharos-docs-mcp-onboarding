@@ -1,0 +1,30 @@
+{
+  "description": "Network parameter verification. Every value is quoted from the Docs MCP transcript 02-network-parameters (see docs/transcripts/02-network-parameters.md) and is re-checked live against the endpoint itself.",
+  "provenance": "docs/transcripts/02-network-parameters.md (agentType PHAROS_DOCS, captured 2026-10-16)",
+  "networks": [
+    {
+      "name": "Atlantic Testnet",
+      "documentedOn": "https://docs.pharos.xyz/getting-started/network/atlantic-testnet",
+      "rpcUrl": "https://atlantic.dplabs-internal.com",
+      "chainId": 688689,
+      "explorer": "https://atlantic.pharosscan.xyz/",
+      "symbol": "PHRS"
+    },
+    {
+      "name": "Pacific Mainnet",
+      "documentedOn": "https://docs.pharos.xyz/getting-started/network/pacific-mainnet",
+      "rpcUrl": "https://rpc.pharos.xyz",
+      "chainId": 1672,
+      "explorer": "https://www.pharosscan.xyz",
+      "symbol": "PROS"
+    },
+    {
+      "name": "Unnamed \"Testnet\" (chain id only appears inside Hardhat config examples)",
+      "documentedOn": "https://docs.pharos.xyz/developer-guide/hardhat/write-your-first-token",
+      "rpcUrl": "https://testnet.dplabs-internal.com",
+      "chainId": 688688,
+      "explorer": "https://testnet.pharosscan.xyz/",
+      "symbol": null
+    }
+  ]
+}
