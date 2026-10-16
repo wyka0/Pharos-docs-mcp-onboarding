@@ -1,0 +1,61 @@
+{
+  "capturedAt": "2026-10-16T14:12:07.201Z",
+  "provenance": "docs/transcripts/02-network-parameters.md (agentType PHAROS_DOCS, captured 2026-10-16)",
+  "node": "v24.14.1",
+  "results": [
+    {
+      "name": "Atlantic Testnet",
+      "documentedOn": "https://docs.pharos.xyz/getting-started/network/atlantic-testnet",
+      "rpcUrl": "https://atlantic.dplabs-internal.com",
+      "documentedChainId": 688689,
+      "chainIdMatch": true,
+      "rpcReachable": true,
+      "blockNumber": 31499293,
+      "explorer": "https://atlantic.pharosscan.xyz/",
+      "explorerReachable": {
+        "ok": true,
+        "status": 200
+      },
+      "symbol": "PHRS",
+      "error": null,
+      "observedChainIdHex": "0xa8231",
+      "observedChainId": 688689
+    },
+    {
+      "name": "Pacific Mainnet",
+      "documentedOn": "https://docs.pharos.xyz/getting-started/network/pacific-mainnet",
+      "rpcUrl": "https://rpc.pharos.xyz",
+      "documentedChainId": 1672,
+      "chainIdMatch": true,
+      "rpcReachable": true,
+      "blockNumber": 20399068,
+      "explorer": "https://www.pharosscan.xyz",
+      "explorerReachable": {
+        "ok": true,
+        "status": 200
+      },
+      "symbol": "PROS",
+      "error": null,
+      "observedChainIdHex": "0x688",
+      "observedChainId": 1672
+    },
+    {
+      "name": "Unnamed \"Testnet\" (chain id only appears inside Hardhat config examples)",
+      "documentedOn": "https://docs.pharos.xyz/developer-guide/hardhat/write-your-first-token",
+      "rpcUrl": "https://testnet.dplabs-internal.com",
+      "documentedChainId": 688688,
+      "chainIdMatch": null,
+      "rpcReachable": false,
+      "blockNumber": null,
+      "explorer": "https://testnet.pharosscan.xyz/",
+      "explorerReachable": {
+        "ok": false,
+        "status": null,
+        "error": "fetch failed"
+      },
+      "symbol": null,
+      "error": "fetch failed",
+      "errorCause": "ERR_TLS_CERT_ALTNAME_INVALID"
+    }
+  ]
+}
