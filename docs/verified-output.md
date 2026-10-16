@@ -98,30 +98,38 @@ testnet.pharosscan.xyz        → CNAME cname.vercel-dns.com
 ## 3. Agent-Center onboarding verification
 
 ```text
-$ node scripts/verify-onboarding.mjs
+$ node scripts/verify-onboarding.mjs --out docs/verified-onboarding.json
 PASS     1a. guest bootstrap without Origin/Referer
          HTTP 403 {"code":"WIDGET_ORIGIN_FORBIDDEN", …} — the header requirement is enforced but not documented
 PASS     1b. guest bootstrap with browser headers
          tokenType=GUEST quota=10 chains=["5734951"]
 PASS     2. guest token on the chat endpoint
-         HTTP 401 {"code":"401","message":"Unauthorized, please login first"} — the docs/UI advertise 10 guest messages, but chat rejects GUEST scope
+         HTTP 401 {"code":"401","message":"Unauthorized, please login first"} — the bootstrap response advertises
+         guestLimit=10 and newUserCredits=300, but the chat endpoint rejects GUEST scope
 PASS     3a. wallet challenge + verify
          signed SIWE-style message; tokenType=AUTHENTICATED
 PASS     3b. onboarding status poll
          state=AUTHENTICATED nextAction=ENTER_CHAT
-PASS     3c. guardian EIP-712 claim submit
-         operationId=claim_… code=000000
 PASS     3e. onboarding complete
-         not required: the account was already onboarded (nextAction=ENTER_CHAT)
+         not required: the account was already onboarded (nextAction=ENTER_CHAT); calling
+         onboarding/complete again returns WIDGET_TOKEN_SCOPE_FORBIDDEN, which is undocumented
 PASS     4a. resolve chatSessionId for PHAROS_DOCS
-         pharos-agent-<redacted> (a session-scoped agent id, not a credential)
+         pharos-agent-<redacted> (the widget sessionId is NOT accepted by the chat endpoint)
 PASS     4b. Docs MCP answers over SSE
-         296 chars, 0 cards, errors=[]
+         finished with content, 0 cards, errors=[]
 
 PASS=8 PARTIAL=0 FAIL=0 SKIP=0
+evidence written to docs/verified-onboarding.json
 ```
 
-Machine-readable run: [`docs/verified-onboarding.json`](../verified-onboarding.json).
+Machine-readable run: [`docs/verified-onboarding.json`](../verified-onboarding.json) (UTF-8, no BOM,
+session identifiers redacted). `--out` writes the file through the redaction helper; a shell
+redirect on PowerShell would emit UTF-16 and is deliberately avoided.
+
+Note on re-running: on a **fresh** account step 3 runs the guardian-claim leg too; on an account
+that is already onboarded the API reports `nextAction=ENTER_CHAT` and calling
+`onboarding/complete` again returns `WIDGET_TOKEN_SCOPE_FORBIDDEN` — an undocumented state, so the
+verifier skips that call instead of reporting a spurious failure.
 
 The **first** time this path ran (fresh account, `node scripts/login.mjs`) the state machine was
 observed end to end:

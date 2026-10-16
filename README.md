@@ -103,7 +103,7 @@ node scripts/verify-network.mjs
 node scripts/login.mjs
 
 # 4. Walk the whole onboarding and report per-step status
-node scripts/verify-onboarding.mjs
+node scripts/verify-onboarding.mjs --out docs/verified-onboarding.json
 #    -> PASS=8 PARTIAL=0 FAIL=0
 
 # 5. Ask the Docs MCP the recorded question set (12 questions, ~15 min)

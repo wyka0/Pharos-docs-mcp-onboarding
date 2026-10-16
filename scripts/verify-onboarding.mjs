@@ -26,6 +26,8 @@ import { AGENT_TYPES, PharosDocsMcpClient, SITE_REFERER, SITE_ORIGIN, WIDGET_BAS
 const results = [];
 const offline = process.argv.includes("--offline");
 const asJson = process.argv.includes("--json");
+const outArgIdx = process.argv.indexOf("--out");
+const outFile = outArgIdx >= 0 ? process.argv[outArgIdx + 1] : null;
 
 /** @param {string} step @param {"PASS"|"FAIL"|"PARTIAL"|"BLOCKED"|"SKIP"} status @param {string} detail @param {Record<string, unknown>} [extra] */
 function record(step, status, detail, extra = {}) {
@@ -109,7 +111,7 @@ if (offline) {
       record(
         "2. guest token on the chat endpoint",
         res.status === 401 ? "PASS" : "FAIL",
-        `HTTP ${res.status} ${body.slice(0, 120)} — the docs/UI advertise ${guest.remainingQuota} guest messages, but chat rejects GUEST scope`,
+        `HTTP ${res.status} ${body.slice(0, 120)} — the bootstrap response advertises guestLimit=${guest.remainingQuota} and newUserCredits=300, but the chat endpoint rejects GUEST scope`,
       );
     } catch (err) {
       record("2. guest token on the chat endpoint", "FAIL", err.message);
@@ -201,6 +203,14 @@ if (asJson) {
 } else {
   console.log("");
   console.log(`PASS=${summary.totals.PASS} PARTIAL=${summary.totals.PARTIAL} FAIL=${summary.totals.FAIL} SKIP=${summary.totals.SKIP}`);
+}
+
+// Written with fs (not a shell redirect) so the file is UTF-8 without a BOM on every platform,
+// and through the redaction helper so published evidence never carries session identifiers.
+if (outFile) {
+  const { redactDeep } = await import("../src/redact.mjs");
+  await writeFile(outFile, `${JSON.stringify(redactDeep(summary), null, 2)}\n`, "utf8");
+  if (!asJson) console.log(`evidence written to ${outFile}`);
 }
 
 process.exit(summary.totals.FAIL > 0 ? 1 : 0);
