@@ -1,0 +1,31 @@
+{
+  "name": "pharos-docs-mcp-onboarding",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reproducible onboarding through the Pharos Developer Docs MCP (ai.pharos.xyz) with an evidence-backed documentation-gap report.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "check": "node scripts/check-syntax.mjs",
+    "verify": "npm run check && npm test",
+    "ask": "node scripts/ask.mjs"
+  },
+  "keywords": [
+    "pharos",
+    "docs-mcp",
+    "onboarding",
+    "agent-arena"
+  ],
+  "author": "wyka0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wyka0/pharos-docs-mcp-onboarding.git"
+  },
+  "dependencies": {
+    "viem": "2.57.7"
+  }
+}
