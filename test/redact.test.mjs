@@ -2,9 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { redactText, redactDeep, redactHeaders } from "../src/redact.mjs";
 
-// Synthetic fixture only — this JWT is hand-written for the test and is not a live credential.
+// Fully fabricated fixture — header, payload and signature were all authored for this test.
+// It is not a credential: the signature segment is the base64url of the literal string
+// "fabricated-signature-not-real!!!" and authenticates nothing.
 const JWT =
-  "eyJhbGciOiJIUzI1NiJ9.eyJ3aWRnZXRTZXNzaW9uSWQiOiI1ZWRhZjk0OCJ9.RKJQNMqBoBABF0lq4Yh6Cc5gRSWf3kaowluv-Khsok4";
+  "eyJhbGciOiJIUzI1NiJ9.eyJ3aWRnZXRTZXNzaW9uSWQiOiI1ZWRhZjk0OCJ9.ZmFicmljYXRlZC1zaWduYXR1cmUtbm90LXJlYWwhISE";
 const UUID = "5edaf948-5554-4f21-9587-32ad66ef10ff";
 
 test("redacts JWTs", () => {
