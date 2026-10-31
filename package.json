@@ -12,7 +12,8 @@
     "test": "node --test \"test/*.test.mjs\"",
     "check": "node scripts/check-syntax.mjs",
     "validate": "node scripts/validate-gaps.mjs",
-    "verify": "npm run check && npm run validate && npm test",
+    "check:rpc": "node scripts/check-rpc-methods.mjs",
+    "verify": "npm run check:rpc && npm run check && npm run validate && npm test",
     "ask": "node scripts/ask.mjs"
   },
   "keywords": [
